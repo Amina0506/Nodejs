@@ -3,7 +3,12 @@ import Book from '../models/book.js';
 //Functie om alle boeken op te halen
 export const getAllBooks = async (req, res) => {
     try{
-        const books = await Book.find()
+        const limit = parseInt(req.query.limit)||5;
+        const offset = parseInt(req.query.offset)||0;
+        const books = await Book
+            .find()
+            .skip(offset)
+            .limit(limit);
 
         res.json(books);
     } catch (err){
@@ -70,3 +75,12 @@ export const deleteBook = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
+export const searchBooks = async (req, res) => {
+    const {query} = req.query;
+    try{
+        const books = await Book.find({$text: {$search: query}});
+        res.json(books);
+    } catch(err){
+        res.status(500).json({message: err.message});
+    }};
