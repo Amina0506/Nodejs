@@ -27,4 +27,11 @@ const bookSchema = new mongoose.Schema({
     }
 });
 
+//Zoekfunctie
+bookSchema.index({
+    title: 'text',
+    author: 'text',
+    content: 'text',
+});
+
 export default mongoose.model('Book', bookSchema)
