@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>API endpoints</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid #999;
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+<h1>API Endpoints</h1>
+
+<h2>Books</h2>
+<table>
+    <tr>
+        <th>HTTP</th>
+        <th>Endpoint</th>
+        <th>Beschrijving</th>
+        <th>Opties / Params</th>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/books</td>
+        <td>Alle boeken ophalen</td>
+        <td>?limit=&lt;nummer&gt;&amp;offset=&lt;nummer&gt;</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/books/:id</td>
+        <td>1 boek ophalen</td>
+        <td>/</td>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>/api/books</td>
+        <td>Nieuw boek toevoegen</td>
+        <td>Velden: { title, author, year, genre, content }</td>
+    </tr>
+    <tr>
+        <td>PUT</td>
+        <td>/api/books/:id</td>
+        <td>Boek updaten</td>
+        <td>Velden updaten naar keuze: { title, author, year, genre, content }</td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>/api/books/:id</td>
+        <td>Boek verwijderen</td>
+        <td>/</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/books-search</td>
+        <td>Boeken zoeken op titel of auteur</td>
+        <td>?query=&lt;zoekterm&gt;</td>
+    </tr>
+</table>
+
+<h2>Authors</h2>
+<table>
+    <tr>
+        <th>HTTP</th>
+        <th>Endpoint</th>
+        <th>Beschrijving</th>
+        <th>Opties / Params</th>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/authors</td>
+        <td>Alle auteurs ophalen</td>
+        <td>?limit=&lt;nummer&gt;&amp;offset=&lt;nummer&gt;&amp;sortBy=name/birthYear</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/authors/:id</td>
+        <td>1 auteur ophalen</td>
+        <td>/</td>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>/api/authors</td>
+        <td>Nieuwe auteur toevoegen</td>
+        <td>Velden: { name, birthYear, bio, genres }</td>
+    </tr>
+    <tr>
+        <td>PUT</td>
+        <td>/api/authors/:id</td>
+        <td>Auteur updaten</td>
+        <td>Velden updaten naar keuze: { name, birthYear, bio, genres }</td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>/api/authors/:id</td>
+        <td>Auteur verwijderen</td>
+        <td>/</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/authors-search</td>
+        <td>Auteurs zoeken op naam</td>
+        <td>?query=&lt;zoekterm&gt;</td>
+    </tr>
+</table>
+</body>
+</html>
