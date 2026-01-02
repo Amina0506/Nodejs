@@ -5,11 +5,20 @@ export const getAllBooks = async (req, res) => {
     try{
         const limit = parseInt(req.query.limit)||5;
         const offset = parseInt(req.query.offset)||0;
-        const books = await Book
+        const sortBy = req.query.sortBy || null;
+
+        let query = Book
             .find()
             .populate('author')
             .skip(offset)
             .limit(limit);
+
+        //Sorteren
+        if(sortBy){
+            query = query.sort(sortBy);
+        }
+
+        const books = await query;
 
         res.json(books);
     } catch (err){
@@ -93,7 +102,6 @@ export const searchBooks = async (req, res) => {
             .find({
                 $or: [
                     { title: { $regex: queryRegx } },
-                    { author: { $regex: queryRegx } },
                 ],
             })
         res.json(books);
