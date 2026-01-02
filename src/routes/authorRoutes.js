@@ -3,16 +3,16 @@ import { getAllAuthors, getAuthorById, createAuthor, updateAuthor, deleteAuthor,
 
 const router = express.Router();
 
-router.get('/', getAllAuthors);
+router.get('/authors', getAllAuthors);
 
-router.get('/:id', getAuthorById);
+router.get('/authors/:id', getAuthorById);
 
-router.post('/', createAuthor);
+router.post('/authors', createAuthor);
 
-router.put('/:id', updateAuthor);
+router.put('/authors/:id', updateAuthor);
 
-router.delete('/:id', deleteAuthor);
+router.delete('/authors/:id', deleteAuthor);
 
-router.get('/search', searchAuthors);
+router.get('/authors-search', searchAuthors);
 
 export default router;
