@@ -7,6 +7,7 @@ export const getAllBooks = async (req, res) => {
         const offset = parseInt(req.query.offset)||0;
         const books = await Book
             .find()
+            .populate('author')
             .skip(offset)
             .limit(limit);
 
@@ -20,7 +21,8 @@ export const getAllBooks = async (req, res) => {
 export const getBookById = async (req, res) => {
     try{
         const book = await Book
-            .findById(req.params.id);
+            .findById(req.params.id)
+            .populate('author');
 
         if(!book){
             return res.status(404).json({ message: 'Boek niet gevonden' });
@@ -39,7 +41,9 @@ export const createBook = async (req, res) => {
 
     try{
         const newBook = await book.save();
-        res.status(201).json(newBook);
+        const populatedBook = await newBook.populate('author');
+
+        res.status(201).json(populatedBook);
     } catch (err){
         res.status(400).json({ message: err.message });
     }
@@ -53,9 +57,12 @@ export const updateBook = async (req, res) => {
             return res.status(404).json({ message: 'Boek niet gevonden' });
         }
 
+        if (req.body.authorId) book.author = req.body.authorId;
+
         Object.assign(book, req.body);
         const updatedBook = await book.save();
-        res.json(updatedBook);
+        const populatedBook = await updatedBook.populate('author');
+        res.json(populatedBook);
     } catch (err){
         res.status(400).json({ message: err.message });
     }
@@ -92,4 +99,5 @@ export const searchBooks = async (req, res) => {
         res.json(books);
     } catch(err){
         res.status(500).json({message: err.message});
-    }};
+    }
+};

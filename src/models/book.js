@@ -8,7 +8,8 @@ const bookSchema = new mongoose.Schema({
         maxLength: 100,
     },
     author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Author',
         required: true,
     },
     year: {
@@ -30,7 +31,6 @@ const bookSchema = new mongoose.Schema({
 //Zoekfunctie
 bookSchema.index({
     title: 'text',
-    author: 'text',
     content: 'text',
 });
 
