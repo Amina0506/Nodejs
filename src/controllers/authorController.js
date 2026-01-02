@@ -99,6 +99,7 @@ export const searchAuthors = async (req, res) => {
             .find({
                 $or: [
                     { name: { $regex: queryRegx } },
+                    { genres: { $regex: queryRegx } },
                 ],
             })
         res.json(authors);
