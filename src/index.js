@@ -17,9 +17,14 @@ app.use('/api', authorRoutes);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get(['/endpoints', '/endpoints.html'], (req, res) => {
     res.sendFile(path.join(__dirname, '../endpoints.html'));
+});
+
+app.get(['/public/data', '/data.html'], (req, res) => {
+    res.sendFile(path.join(__dirname, 'data.html'));
 });
 
 //Connectie met de database
