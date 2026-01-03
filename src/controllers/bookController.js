@@ -104,6 +104,7 @@ export const searchBooks = async (req, res) => {
                     { title: { $regex: queryRegx } },
                 ],
             })
+            .populate('author');
         res.json(books);
     } catch(err){
         res.status(500).json({message: err.message});
